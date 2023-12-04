@@ -30,6 +30,21 @@
         "hardware": "details of the hardware",
         "software": "details of the software",
         "url": "https://www.tandfonline.com/doi/full/10.1080/17489725.2022.2086309"
+      },
+      {
+        "id" : "2",
+        "media" : "VR",
+        "country" : "UK",
+        "region" : "Europe",
+        "organisation":  "Newquay Futures",
+        "type": "public engagment",
+        "year": 2022,
+        "title": "Newquay Futures",
+        "abstract": "A virtual bike ride around Newquay looking at possible future developments",
+        "details": "The council working with local organisations created the VR experience through PropTech government funding. People can take a virtual tour of the town inside a VR headset, seeing proposed developments. They can then give comments",
+        "hardware": "unknown",
+        "software": "unknown",
+        "url": "https://www.bbc.co.uk/news/uk-england-cornwall-63708825"
       }
     ]
 }
