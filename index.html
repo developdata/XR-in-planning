@@ -110,7 +110,6 @@
         const getData = async ()=>{
             const response = await fetch('json/data.json');
             const data = await response.json();
-            console.log(data.members.length);
 
             for (var i = 0; i < data.members.length; i++){
                 printIt(data.members[i]);
@@ -148,9 +147,11 @@
 
             // a.href = "https://developdata.github.io/XR-in-planning/page2.html?" + data.id;
 
-            
+            console.log('time around')
             console.log(data.id);
             a.href = "https://developdata.github.io/XR-in-planning/page2.html?" + data.id;
+
+            console.log(a);
 
 
 
