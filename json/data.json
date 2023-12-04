@@ -1,0 +1,35 @@
+{
+    "title" : "AR and VR for Engagement in planning",
+    "members" : [
+      {
+        "id" : "0",
+        "media" : "VR",
+        "country" : "United States",
+        "region" : "Americas",
+        "organisation": "Cal Poly",
+        "type": "research",
+        "year": 2021,
+        "title": "Virtual Reality in Planning",
+        "abstract": "students used VR to engage with a local community on the design of their area",
+        "details": "This was a student research project at Cal Poly that explored how VR could be used in the planning process. Working with the city of GilRoy they developed four plans for commerical spaces. The scenarios they developed could be compared on VR headsets. They used a number of different software applications including SketchUp,  City Engine, ArcGIS, Spatial and vSpatial ",
+        "hardware": "details of the hardware",
+        "software": "Unreal, ArcGIS, City Engine, SketchUp",
+        "url": "https://planning.calpoly.edu/virtual-reality-planning"
+      },
+      {
+        "id" : "1",
+        "media" : "AR",
+        "country" : "Switzerland",
+        "region" : "Europe",
+        "organisation":  " ",
+        "type": "research",
+        "year": 2022,
+        "title": "An augmented reality study for public participation in urban planning",
+        "abstract": "Research that looks at how useful AR is for public particpation",
+        "details": "Details of the project",
+        "hardware": "details of the hardware",
+        "software": "details of the software",
+        "url": "https://www.tandfonline.com/doi/full/10.1080/17489725.2022.2086309"
+      }
+    ]
+}

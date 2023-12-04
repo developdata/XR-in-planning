@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Import JSON</title>
+	    <meta charset="utf-8">
+        <style>
+                body{
+                    font-family: Arial, Helvetica, sans-serif;
+                    /* margin: 0 5%; */
+                }
+
+                div{
+                    border-radius: 0.5rem;
+                    width: 100%;
+                    /* background-color: #16c8b8; */
+                    /* background-color: #94f036; */
+                    background-color: #f57600;
+                    padding: 10px;
+                }
+
+                h1 {
+                    text-align: center;
+                    text-transform: none;
+                    /* border-bottom: 3px solid #405459; */
+                    margin-top: 30px;	
+                }
+                
+                h2 {
+                    color: black;
+                    font-size: 1.3em;
+                }
+
+                p, a{
+                    margin: 10px;
+                    margin-bottom: 40px;
+                }
+
+                a{
+                    /* background-color: #ff74a5; */
+                    /* background-color: #28e1c2; */
+                    /* background-color: #5fe798; */
+                    /* background-color: #3d82ff; */
+                    /* background-color: #ff74a5; */
+                    color: white;
+                    padding: 5px;
+                    border-radius: 0.2rem;
+                    text-decoration: none;
+                    /* border-style: solid;
+                    border-width: 1px;
+  border-color: black; */
+  /* background-color: #5fe798; */
+  background-color: #0073e6;
+                }
+                
+                img {
+                    display: block;
+                    max-width: 100%;
+                    margin: 0 auto;
+                    border-radius: 0.5rem;
+                }
+
+                #menu ul{
+                    list-style: none;
+                    background-color: #94f036;
+                }
+                #menu li{
+                    display: inline;
+                    float: left;
+                    margin: 15px;
+                    /* background-color: #f5a60b; */
+                    /* background-color: #2ab9e7; */
+                    background-color: #054fb9;
+                    color: white;
+                    border-radius: 0.2rem;
+                    padding: 10px;
+                }
+
+            .myborder {
+                text-align: center;
+            }   
+        </style>
+    </head>
+    <body>
+        <h1 id="errorMessage"></h1>
+        <ul id="menu">
+            <!-- <li>Media: </li>
+            <li>Country: </li>
+            <li>Research</li>
+            <li>Hardware: </li>
+            <li>Software development: </li> -->
+        </ul>
+
+        <div id="content">
+            
+            
+            
+
+            <!-- <div class="menu"> -->
+                
+              <!-- </div> -->
+
+        </div>
+
+        
+
+    <script type="text/javascript">
+        
+        //parse the parameter passed to this page in the url
+        const queryString = window.location.search;
+        let idString = queryString.substring(1);
+        let idNumber = Number(idString);
+
+
+        const getData = async ()=>{
+            const response = await fetch('json/data.json');
+            const data = await response.json();
+            const dataArrayLength = data.members.length;
+            
+            
+            if(checkData(dataArrayLength)){
+                printPage(data.members[idNumber])
+            } else {
+                console.log('oh no')
+                printErrorPage();
+            }
+
+        }
+        getData();
+
+        function printPage(data){
+            console.log(data.media)
+            let div = document.getElementById("content");
+            // let ul = document.getElementById("menu");
+
+
+            let ul = document.createElement('ul');
+
+            ul.setAttribute('id', 'menu');
+
+            let aBack = document.createElement('a');
+
+            aBack.href = "http://localhost:3004/index.html"
+            aBack.innerHTML = "HOME";
+
+            let img = document.createElement('img');
+            img.src = 'images/building.png';
+
+            let h1 = document.createElement('h1');
+            h1.innerHTML = data.title;
+            let p = document.createElement('p');
+            p.innerHTML = data.details;
+
+            let a = document.createElement('a');
+
+            a.href = data.url;
+            a.innerHTML = "PROJECT LINK";
+
+            div.appendChild(aBack);
+            
+
+            
+           
+            div.appendChild(ul);
+            div.appendChild(img);
+           
+            div.appendChild(h1);
+            div.appendChild(a); 
+            div.appendChild(p);
+          
+            
+            
+
+            let liType = document.createElement('li');
+            liType.innerHTML = data.type;
+            
+            let liMedia = document.createElement('li');
+            liMedia.innerHTML = "Media: " + data.media;
+
+            let liCountry = document.createElement('li');
+            liCountry.innerHTML = "Country: " + data.country;
+
+            let liHardware = document.createElement('li');
+            liHardware.innerHTML = "Hardware: " + data.hardware;
+
+            let liSoftware = document.createElement('li');
+            liSoftware.innerHTML = "Software development: " + data.software;
+
+            ul.appendChild(liType);
+            ul.appendChild(liMedia);
+            ul.appendChild(liCountry);
+            ul.appendChild(liHardware);
+            ul.appendChild(liSoftware);
+
+        }
+
+
+        function printErrorPage(){
+            let H1 = document.getElementById("errorMessage");
+
+            H1.innerHTML = "sorry that page does not exist";
+        }
+        //check that the url parameter is a number in the data array
+        function checkData(data){
+        if (idNumber <= data-1 && idNumber >= 0){
+                return true;
+            } else {
+                return false
+            }
+        }
+    </script>
+    </body>
+</html>

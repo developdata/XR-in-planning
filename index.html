@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Import JSON</title>
+	    <meta charset="utf-8">
+        <style>
+
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            /* margin: 0 5%; */
+        }
+
+        div{
+                    border-radius: 0.5rem;
+                    width: 100%;
+                    /* background-color: #16c8b8; */
+                    /* background-color: #94f036; */
+                    background-color: #f57600;
+                    padding: 10px;
+                }
+                h1 {
+                    text-align: center;
+                    text-transform: none;
+                    /* border-bottom: 3px solid #405459; */
+                    margin-top: 30px;	
+                }
+
+            #smol-css-grid {
+                --min: 20ch;
+                --gap: 1rem;
+
+                display: grid;
+                grid-gap: var(--gap);
+                grid-template-columns: repeat(auto-fit, minmax(var(--min), 1fr));
+            }
+
+            .smol-card-component {
+                --img-ratio: 3/2;
+
+                display: flex;
+                flex-direction: column;
+                /* Supported for flexbox in modern browsers since April 2021 */
+                gap: 1rem;
+                box-shadow: 0 0 0.5rem hsl(0 0% 0% / 35%);
+                border-radius: 0.5rem;
+            }
+
+            .smol-card-component > img {
+                aspect-ratio: var(--img-ratio);
+                object-fit: cover;
+                width: 100%;
+            }
+
+            .smol-card-component > img:first-child {
+                border-radius: 0.5rem 0.5rem 0 0;
+            }
+
+            .smol-card-component > img:last-child {
+                border-radius: 0 0 0.5rem 0.5rem;
+                margin-top: auto;
+            }
+
+            .smol-card-component > :not(img) {
+                margin-left: 1rem;
+                margin-right: 1rem;
+
+                /* Prevent typography "orphans" */
+                /* text-wrap: balance; */
+            }
+
+            .smol-card-component > :not(img):first-child {
+                margin-top: 1rem;
+            }
+
+            /* Enhanced `:not()` accepts a selector list,
+            but as a fallback you can chain `:not()` instead */
+            .smol-card-component > :last-of-type:not(img, h2, h3, h4) {
+                margin-bottom: 1rem;
+            }
+
+            .smol-card-component > :not(h2, h3, h4) {
+                font-size: 0.9rem;
+            }
+
+            .smol-card-component > a {
+                align-self: start;
+            }
+                    
+                
+        </style>
+    </head>
+    <body>
+        <!-- flexbox from https://codepen.io/rolschau/pen/mdvXwLr -->
+        <!-- reference https://smolcss.dev/ -->
+
+        <div>
+            <h1>VR and AR for Engagment in Planning</h1>
+        </div>
+        
+        <ul data-component id="smol-css-grid" style="--min: 22ch; --gap: 2rem;">
+            
+        </ul>
+
+        <footer>
+            <p>This site is a collection of different project that have used AR and VR for engagment in the planning process for built environments. They are not the work of this site, but are all projects with links online.</p>
+        </footer>
+    
+        
+        <script type="text/javascript">
+        const getData = async ()=>{
+            const response = await fetch('json/data.json');
+            const data = await response.json();
+            console.log(data.members.length);
+
+            for (var i = 0; i < data.members.length; i++){
+                printIt(data.members[i]);
+            }
+        }
+        getData();
+
+    
+
+        function printIt(data){
+            let ul = document.getElementById("smol-css-grid");
+            let li = document.createElement("li");
+
+            li.setAttribute("class", "smol-card-component");
+
+            let img = document.createElement('img');
+            // img.src = 'https://images.unsplash.com/photo-1607274227313-08146c819e6f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=400';
+
+            img.src = 'images/building4.jpg'
+
+
+            let h3 =  document.createElement('H1');
+            h3.innerHTML = data.title;
+
+            let p1 = document.createElement('p');
+            p1.innerHTML = data.abstract;
+
+            let p2 = document.createElement('p');
+            p2.innerHTML = data.media;
+
+            let p3 = document.createElement('p');
+            p3.innerHTML = data.country;
+
+            let a = document.createElement('a');
+
+            a.href = "http://localhost:3004/page2.html?" + data.id;
+            a.innerHTML = "link text"
+            
+            li.appendChild(img);
+            li.appendChild(h3);
+            li.appendChild(p1);
+            li.appendChild(p2);
+            li.appendChild(p3);
+            li.appendChild(a);
+
+            ul.appendChild(li);
+        
+        }
+
+    
+        </script>
+    </body>
+</html>
